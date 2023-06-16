@@ -23,6 +23,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/comments", commentsRoutes);
 app.use("/api/reviews", reviewsRoutes);
 
+app.use((req, res, next) => {
+  res.status(404).json({
+    message: "endpoint not found",
+  });
+});
+
 app.listen(PORT, () => {
   console.log("Connected");
 });
