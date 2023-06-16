@@ -1,4 +1,4 @@
-import { createPool } from "mysql";
+import { createPool } from "mysql2";
 import {
   DB_HOST,
   DB_DATABASE,
