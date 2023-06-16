@@ -27,7 +27,7 @@ export const getReviews = (req, res) => {
 
 export const getReview = (req, res) => {
   const id = req.params.id;
-  const sqlGet = "SELECT * FROM cruddb.anime_reviews WHERE id = ?";
+  const sqlGet = "SELECT * FROM anime_reviews WHERE id = ?";
 
   db.query(sqlGet, id, (err, data) => {
     if (err) return res.send(err);
