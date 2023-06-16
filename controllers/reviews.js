@@ -1,6 +1,6 @@
 import { db } from "../db.js";
 
-export const getReviews = async (req, res) => {
+export const getReviews = (req, res) => {
   const q = req.query.category
     ? "SELECT * FROM anime_reviews WHERE animeCategory = ?;"
     : req.query.type
@@ -18,25 +18,25 @@ export const getReviews = async (req, res) => {
       ? req.query.status
       : null;
 
-  await db.query(q, [query], (err, data) => {
+  db.query(q, [query], (err, data) => {
     if (err) return res.send(err);
 
     return res.status(200).json(data);
   });
 };
 
-export const getReview = async (req, res) => {
+export const getReview = (req, res) => {
   const id = req.params.id;
   const sqlGet = "SELECT * FROM cruddb.anime_reviews WHERE id = ?";
 
-  await db.query(sqlGet, id, (err, data) => {
+  db.query(sqlGet, id, (err, data) => {
     if (err) return res.send(err);
 
     return res.status(200).json(data);
   });
 };
 
-export const addReview = async (req, res) => {
+export const addReview = (req, res) => {
   const animeName = req.body.animeName;
   const animeSynopsis = req.body.animeSynopsis;
   const animeType = req.body.animeType;
@@ -48,7 +48,7 @@ export const addReview = async (req, res) => {
   const sqlInsert =
     "INSERT INTO anime_reviews (animeName, animeSynopsis, animeType, animeYear, animeStatus, animeImg, animeCategory) VALUES (?,?,?,?,?,?,?);";
 
-  await db.query(
+  db.query(
     sqlInsert,
     [
       animeName,
@@ -67,18 +67,18 @@ export const addReview = async (req, res) => {
   );
 };
 
-export const deleteReview = async (req, res) => {
+export const deleteReview = (req, res) => {
   const id = req.params.id;
   const sqlDelete = "DELETE FROM anime_reviews WHERE id = ?";
 
-  await db.query(sqlDelete, id, (err, data) => {
+  db.query(sqlDelete, id, (err, data) => {
     if (err) return res.send(err);
 
     return res.status(200).json(data);
   });
 };
 
-export const updateReview = async (req, res) => {
+export const updateReview = (req, res) => {
   const id = req.body.id;
   const newSynopsis = req.body.newSynopsis;
   const newName = req.body.newName;
@@ -89,7 +89,7 @@ export const updateReview = async (req, res) => {
   const sqlUpdate =
     "UPDATE anime_reviews SET animeSynopsis = ?, animeName = ?, animeImg = ?, animeType = ?, animeYear = ?, animeStatus = ?  WHERE id = ?";
 
-  await db.query(
+  db.query(
     sqlUpdate,
     [newSynopsis, newName, newImg, newType, newYear, newStatus, id],
     (err, data) => {
