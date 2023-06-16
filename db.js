@@ -1,4 +1,4 @@
-import { createPool } from "mysql2/promise.js";
+import { createPool } from "mysql";
 import {
   DB_HOST,
   DB_DATABASE,
