@@ -13,3 +13,20 @@ CREATE TABLE anime_reviews (
   animeCategory VARCHAR(45) NOT NULL,
   PRIMARY KEY (id)
 )
+
+CREATE TABLE users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(200) NOT NULL,
+  email VARCHAR(200) NOT NULL,
+  password VARCHAR(500) NOT NULL,
+  img VARCHAR(255),
+  admin TINYINT,
+  PRIMARY KEY (id)
+)
+
+CREATE TABLE comments (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  comment_text VARCHAR(1500) NOT NULL,
+  ratio DECIMAL(2,1) NOT NULL,
+  PRIMARY KEY (id)
+)

@@ -2,7 +2,7 @@ import { db } from "../db.js";
 
 export const getComments = (req, res) => {
   const id = req.params.id;
-  const sqlGet = "SELECT * FROM cruddb.comments WHERE animeId = ?";
+  const sqlGet = "SELECT * FROM comments WHERE animeId = ?";
 
   db.query(sqlGet, id, (err, data) => {
     if (err) return res.send(err);
@@ -22,7 +22,7 @@ export const getAllUsers = (req, res) => {
 };
 
 export const getAllRatios = (req, res) => {
-  const q = "SELECT animeId, AVG(ratio) FROM cruddb.comments GROUP BY animeId;";
+  const q = "SELECT animeId, AVG(ratio) FROM comments GROUP BY animeId;";
   db.query(q, "", (err, data) => {
     if (err) return res.send(err);
 
