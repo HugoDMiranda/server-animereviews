@@ -19,10 +19,7 @@ app.use(cookieParser());
 //   })
 // );
 
-const origin = [
-  "https://anime-reviews-mauve.vercel.app",
-  "http://localhost:3000",
-];
+const origin = ["https://animereviews.vercel.app", "http://localhost:3000"];
 
 app.use(
   cors({
