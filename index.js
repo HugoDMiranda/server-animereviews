@@ -20,7 +20,7 @@ app.use(cookieParser());
 // );
 
 const origin = [
-  "https://anime-reviews-mauve.vercel.app/",
+  "https://anime-reviews-mauve.vercel.app",
   "http://localhost:3000",
 ];
 
