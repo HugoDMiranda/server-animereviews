@@ -12,7 +12,7 @@ CREATE TABLE anime_reviews (
   animeSynopsis VARCHAR(1500) NOT NULL,
   animeCategory VARCHAR(45) NOT NULL,
   PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE users (
   id INT(11) NOT NULL AUTO_INCREMENT,
@@ -22,11 +22,17 @@ CREATE TABLE users (
   img VARCHAR(255),
   admin TINYINT,
   PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE comments (
   id INT(11) NOT NULL AUTO_INCREMENT,
   comment_text VARCHAR(1500) NOT NULL,
   ratio DECIMAL(2,1) NOT NULL,
-  PRIMARY KEY (id)
-)
+  userId INT(11) NOT NULL,
+  animeId INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  KEY user_id_idx (userId),
+  KEY anime_id_idx (animeId),
+  CONSTRAINT `comments_user_fk` FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT `comments_anime_fk` FOREIGN KEY (animeId) REFERENCES anime_reviews(id) ON DELETE CASCADE
+);
