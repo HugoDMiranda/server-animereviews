@@ -69,7 +69,9 @@ export const addReview = (req, res) => {
 
 export const deleteReview = (req, res) => {
   const id = req.params.id;
-  const sqlDelete = "DELETE FROM anime_reviews WHERE id = ?";
+  // const sqlDelete = "DELETE FROM anime_reviews WHERE id = ?";
+  const sqlDelete =
+    "DELETE anime_reviews,comments FROM anime_reviews JOIN comments ON anime_reviews.id = comments.animeId WHERE anime_reviews.id = ?";
 
   db.query(sqlDelete, id, (err, data) => {
     if (err) return res.send(err);
